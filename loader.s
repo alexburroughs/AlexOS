@@ -18,6 +18,7 @@ align 4
 
 loader:
 	mov esp, kernel_stack + KERNEL_STACK_SIZE
+	mov dword [0x000B8000], 0x4128
 .loop:
 	extern kmain
 	call kmain
