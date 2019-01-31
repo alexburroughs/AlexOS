@@ -5,8 +5,6 @@ FLAGS	     equ 0x0
 CHECKSUM     equ -MAGIC_NUMBER
 KERNEL_STACK_SIZE equ 4096
 
-extern kmain
-
 section .bss
 align 4
 kernel_stack:
@@ -21,5 +19,6 @@ align 4
 loader:
 	mov esp, kernel_stack + KERNEL_STACK_SIZE
 .loop:
+	extern kmain
 	call kmain
 	jmp .loop

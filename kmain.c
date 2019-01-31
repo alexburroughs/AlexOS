@@ -14,11 +14,11 @@ void kmain() {
 	fb_move_cursor(1);
 	fb_write_cell(0, 'A', 2, 8);
 	fb_move_cursor(2);
-	fb_write_cell(0, 'A', 2, 8);
+	fb_write_cell(1, 'A', 2, 8);
 	fb_move_cursor(3);
-	fb_write_cell(0, 'A', 2, 8);
+	fb_write_cell(2, 'A', 2, 8);
 	fb_move_cursor(4);
-	fb_write_cell(0, 'A', 2, 8);
+	fb_write_cell(4, 'A', 2, 8);
 }
 
 void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg) {
