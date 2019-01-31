@@ -22,5 +22,6 @@ loader:
 	mov al, 65
 	mov bh, 1
 	mov cx, 2
+	int 0x10
 .loop:
 	jmp .loop
