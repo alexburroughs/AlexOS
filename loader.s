@@ -20,6 +20,6 @@ align 4
 
 loader:
 	mov esp, kernel_stack + KERNEL_STACK_SIZE
-	call kmain
 .loop:
+	call kmain
 	jmp .loop
