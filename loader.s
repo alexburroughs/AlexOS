@@ -18,6 +18,9 @@ align 4
 
 loader:
 	mov esp, kernel_stack + KERNEL_STACK_SIZE
-	mov eax, 0XCAFEBABE
+	mov ah, 0Ah
+	mov al, 65
+	mov bh, 1
+	mov cx, 2
 .loop:
 	jmp .loop
