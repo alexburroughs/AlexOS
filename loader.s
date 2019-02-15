@@ -4,7 +4,7 @@ MAGIC_NUMBER equ 0x1BADB002
 FLAGS	     equ 0x0
 CHECKSUM     equ -MAGIC_NUMBER
 KERNEL_STACK_SIZE equ 4096
-stringA DB "string",0
+stringA DB "iasdadsastring",0
 
 section .bss
 align 4
@@ -22,13 +22,14 @@ loader:
 	mov dword [0x000B8000], 0x4128
 .loop:
 	extern kmain
-	mov ebx, stringA
-	jmp print_string_pm
+	call kmain
 	jmp .loop
+
+
 [bits 32] ; using 32-bit protected mode
 
 ; this is how constants are defined
-VIDEO_MEMORY equ 0xb8000
+VIDEO_MEMORY equ 0xB8000
 WHITE_ON_BLACK equ 0x0f ; the color byte for each character
 
 print_string_pm:

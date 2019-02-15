@@ -1,4 +1,5 @@
 #include "io.h"
+#include "kernel.h"
 
 #define FB_COMMAND_PORT			0x3D4
 #define FB_DATA_PORT			0x3D5
@@ -20,16 +21,24 @@ void serial_configure_baud_rate(unsigned short com, unsigned short divisor);
 void serial_configure_line(unsigned short com);
 int serial_is_transmit_fifo_empty(unsigned int com);
 
+static UINT16 VGA_DefaultEntry(unsigned char to_print) {
+	return (UINT16) to_print | (UINT16)WHITE_COLOUR << 8;
+}
+
 void kmain() {
-	
-	fb_move_cursor(1);
-	fb_write_cell(0, 'A', 2, 8);
-	fb_move_cursor(2);
-	fb_write_cell(1, 'A', 2, 8);
-	fb_move_cursor(3);
-	fb_write_cell(2, 'A', 2, 8);
-	fb_move_cursor(4);
-	fb_write_cell(4, 'A', 2, 8);
+	TERMINAL_BUFFER = (UINT16*) VGA_ADDRESS;
+
+	TERMINAL_BUFFER[0] = VGA_DefaultEntry('H');
+	TERMINAL_BUFFER[1] = VGA_DefaultEntry('E');
+	TERMINAL_BUFFER[2] = VGA_DefaultEntry('l');
+	TERMINAL_BUFFER[3] = VGA_DefaultEntry('l');
+	TERMINAL_BUFFER[4] = VGA_DefaultEntry('o');
+    TERMINAL_BUFFER[5] = VGA_DefaultEntry(' ');
+    TERMINAL_BUFFER[6] = VGA_DefaultEntry('W');
+    TERMINAL_BUFFER[7] = VGA_DefaultEntry('o');
+    TERMINAL_BUFFER[8] = VGA_DefaultEntry('r');
+    TERMINAL_BUFFER[9] = VGA_DefaultEntry('l');
+    TERMINAL_BUFFER[10] = VGA_DefaultEntry('d');
 }
 
 void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg) {
