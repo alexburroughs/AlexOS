@@ -22,9 +22,8 @@ loader:
 	mov dword [0x000B8000], 0x4128
 .loop:
 	extern kmain
-	call kmain
 	mov ebx, stringA
-	call print_string_pm
+	jmp print_string_pm
 	jmp .loop
 [bits 32] ; using 32-bit protected mode
 
